@@ -70,11 +70,11 @@ public class ComposeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String tweetContent = etCompose.getText().toString();
-                if(tweetContent.isEmpty()){
+                if (tweetContent.isEmpty()) {
                     Toast.makeText(ComposeActivity.this, "Tweet can't be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(tweetContent.length() > MAX_TWEET_LENGTH){
+                if (tweetContent.length() > MAX_TWEET_LENGTH) {
                     Toast.makeText(ComposeActivity.this, "Tweet is too long", Toast.LENGTH_SHORT).show();
                     return;
                 }

@@ -71,10 +71,10 @@ public class TimelineActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.compose) {
+        if (item.getItemId() == R.id.compose) {
             //compose icon has been tapped
             //navigate to compose activity
-            Intent intent = new Intent (this, ComposeActivity.class);
+            Intent intent = new Intent(this, ComposeActivity.class);
             startActivityForResult(intent, REQUEST_CODE);
             return true;
         }
@@ -83,12 +83,12 @@ public class TimelineActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if( requestCode == REQUEST_CODE && resultCode == RESULT_OK){
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             //Get data from the intent (tweet)
-            Tweet tweet =  Parcels.unwrap(data.getParcelableExtra("tweet"));
+            Tweet tweet = Parcels.unwrap(data.getParcelableExtra("tweet"));
             //update recycler view with the tweet
             //modify data source of tweets
-            tweets.add(0,tweet);
+            tweets.add(0, tweet);
             //update the adapter
             adapter.notifyItemInserted(0);
             rvTweets.smoothScrollToPosition(0);
