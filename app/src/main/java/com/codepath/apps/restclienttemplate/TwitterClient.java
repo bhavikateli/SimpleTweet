@@ -53,6 +53,15 @@ public class TwitterClient extends OAuthBaseClient {
 
         client.get(apiUrl, params, handler);
     }
+    public void getNextPageOfTweets (JsonHttpResponseHandler handler, long maxId) {
+        String apiUrl = getApiUrl("statuses/home_timeline.json");
+        // Can specify query string params directly or through RequestParams.
+        RequestParams params = new RequestParams();
+        params.put("count", 25);
+        params.put("max_id", maxId);
+
+        client.get(apiUrl, params, handler);
+    }
 
     public void publishTweet(String tweetContent, JsonHttpResponseHandler handler) {
         String apiUrl = getApiUrl("statuses/update.json");
@@ -62,6 +71,36 @@ public class TwitterClient extends OAuthBaseClient {
 
         client.post(apiUrl, params, "", handler);
     }
+
+    public void retweetTweet(boolean already_retweeted, long id, JsonHttpResponseHandler handler) {
+        String apiUrl;
+        if (already_retweeted == true) {
+            apiUrl = getApiUrl("statuses/retweet" + Long.toString(id) + ".json");
+            ;
+        } else {
+            apiUrl = getApiUrl("statuses/unretweet" + Long.toString(id) + ".json");
+            ;
+        }
+        RequestParams params = new RequestParams();
+        params.put("id", id);
+        client.post(apiUrl, String.valueOf(params), handler);
+    }
+
+    public void likeTweet(boolean already_liked, long id, JsonHttpResponseHandler handler) {
+        String apiUrl;
+        if (already_liked == true) {
+            apiUrl = getApiUrl("favorites/destroy.json");
+            ;
+        } else {
+            apiUrl = getApiUrl("favorites/create.json");
+            ;
+        }
+        RequestParams params = new RequestParams();
+        params.put("id", id);
+        client.post(apiUrl, String.valueOf(params), handler);
+    }
+
+
 
     /* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint
      * 	  i.e getApiUrl("statuses/home_timeline.json");

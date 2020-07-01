@@ -23,7 +23,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        tools:text="@telibhavi" />
+        tools:text="telibhavi" />
 
     <TextView
         android:id="@+id/tvBody"
@@ -31,11 +31,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvScreenName"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="4dp"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="0dp"
         android:layout_toEndOf="@+id/ivProfileImage"
         tools:text="yo this is my first tweet :))) yolo. iam going to continue to keep typing because i dont get why this tweet got cut off, it doesnt make any sense? send help to world and peace to us allyo this is my first tweet :))) yolo. iam going to continue to keep typing because i dont get why this tweet got cut off, it doesnt make any sense? send help to world and peace to us allyo this is my first tweet :))) yolo. iam going to continue to keep typing because i dont get why this tweet got cut off, it doesnt make any sense? send help to world and peace to us all" />
 

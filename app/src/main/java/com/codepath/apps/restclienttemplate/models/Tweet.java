@@ -18,8 +18,7 @@ public class Tweet {
     public boolean like;
     public int likeCount;
     public int retweetCount;
-
-
+    public Long id;
 
 
     //empty constructor fr parceler
@@ -35,6 +34,7 @@ public class Tweet {
         tweet.like = jsonObject.getBoolean("favorited");
         tweet.likeCount = jsonObject.getInt("favorite_count");
         tweet.retweetCount = jsonObject.getInt("retweet_count");
+        tweet.id = jsonObject.getLong("id");
 
         return tweet;
     }
