@@ -4,7 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:background="#FFFDFD">
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_below="@+id/ivRetweet"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="0dp"
+        android:background="@android:color/darker_gray"
+        android:fillColor="#040303" />
 
     <ImageView
         android:id="@+id/ivProfileImage"
@@ -31,11 +45,12 @@
         android:id="@+id/tvBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvScreenName"
+        android:layout_below="@+id/ivProfileImage"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="-37dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="43dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-27dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="9dp"
         android:layout_toEndOf="@+id/ivProfileImage"
         android:textSize="18.5sp"
         tools:text="yo this is my first tweet :))) yolo. iam going to continue to keep typing because i dont get why this tweet got cut off, it doesnt make any sense? send help to world and peace to us all" />
@@ -45,8 +60,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvBody"
-        android:layout_marginStart="-36dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginStart="-35dp"
+        android:layout_marginTop="15dp"
         android:layout_toEndOf="@+id/ivProfileImage"
         android:textSize="16sp"
         tools:text="timeStamp" />
@@ -57,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvLikeLabel"
         android:layout_marginStart="58dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/ivReply"
         app:srcCompat="@drawable/ic_vector_retweet"
         tools:srcCompat="@drawable/ic_vector_retweet" />
@@ -68,8 +83,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvLikeLabel"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="58dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="8dp"
         app:srcCompat="@drawable/vector_compose_dm_fab"
         tools:srcCompat="@drawable/vector_compose_dm_fab" />
 
@@ -78,10 +93,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvLikeLabel"
-        android:layout_marginStart="58dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="7dp"
         android:layout_toEndOf="@+id/ivRetweet"
-        app:srcCompat="@drawable/ic_vector_heart"
+        app:srcCompat="@drawable/ic_vector_heart_stroke"
         tools:srcCompat="@drawable/ic_vector_heart" />
 
     <TextView
@@ -90,9 +105,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTimeStamp"
         android:layout_marginStart="-34dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/ivProfileImage"
         android:textSize="13sp"
+        android:textStyle="bold"
         tools:text="5" />
 
     <TextView
@@ -100,10 +116,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTimeStamp"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/tvLikeLabel"
         android:textSize="13sp"
+        android:textStyle="bold"
         tools:text="100" />
 
     <TextView
@@ -112,7 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTimeStamp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/tvLikeCount"
         android:text="Likes"
         android:textSize="13sp" />
@@ -123,9 +140,73 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTimeStamp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/tvRetweetCount"
         android:text="Retweets"
         android:textSize="13sp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tvRetweetCount"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-5dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="0dp"
+        android:background="@android:color/darker_gray"
+        android:fillColor="#040303" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tvBody"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="0dp"
+        android:background="@android:color/darker_gray"
+        android:fillColor="#040303" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tvTimeStamp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="0dp"
+        android:background="@android:color/darker_gray"
+        android:fillColor="#040303" />
+
+    <EditText
+        android:id="@+id/etReply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginBottom="72dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Tweet your reply"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/btnPublishReply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="27dp"
+        android:background="#00acee"
+        android:text="Reply" />
 
 </RelativeLayout>

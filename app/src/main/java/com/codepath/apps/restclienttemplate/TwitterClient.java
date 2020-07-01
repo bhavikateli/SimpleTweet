@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
 
+import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.codepath.oauth.OAuthBaseClient;
@@ -75,29 +76,34 @@ public class TwitterClient extends OAuthBaseClient {
     public void retweetTweet(boolean already_retweeted, long id, JsonHttpResponseHandler handler) {
         String apiUrl;
         if (already_retweeted == true) {
-            apiUrl = getApiUrl("statuses/retweet" + Long.toString(id) + ".json");
-            ;
+            apiUrl = getApiUrl("statuses/retweet/" + Long.toString(id) + ".json");
         } else {
-            apiUrl = getApiUrl("statuses/unretweet" + Long.toString(id) + ".json");
-            ;
+            apiUrl = getApiUrl("statuses/unretweet/" + Long.toString(id) + ".json");
         }
         RequestParams params = new RequestParams();
         params.put("id", id);
-        client.post(apiUrl, String.valueOf(params), handler);
+        client.post(apiUrl, params, "", handler);
     }
 
     public void likeTweet(boolean already_liked, long id, JsonHttpResponseHandler handler) {
         String apiUrl;
         if (already_liked == true) {
             apiUrl = getApiUrl("favorites/destroy.json");
-            ;
         } else {
             apiUrl = getApiUrl("favorites/create.json");
-            ;
         }
         RequestParams params = new RequestParams();
         params.put("id", id);
-        client.post(apiUrl, String.valueOf(params), handler);
+        client.post(apiUrl, params, "", handler);
+    }
+
+    public void replyTweet(String tweetContent, Tweet statusTweet, JsonHttpResponseHandler handler){
+        String apiUrl = getApiUrl("statuses/home_timeline.json");
+        RequestParams params = new RequestParams();
+        params.put("status", tweetContent);
+        params.put("in_reply_to_status_id", statusTweet.id);
+        client.post(apiUrl, params, "", handler);
+
     }
 
 
