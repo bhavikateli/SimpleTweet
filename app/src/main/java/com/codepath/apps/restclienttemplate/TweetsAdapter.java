@@ -76,7 +76,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvRetweetCount;
         TextView tvLikeCount;
         ImageView ivTweetPhoto;
-
+        TextView tvName;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -86,6 +86,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
             ivTweetPhoto = itemView.findViewById(R.id.ivTweetPhoto);
+            tvName = itemView.findViewById(R.id.tvName);
 
 
             tvLikeCount = itemView.findViewById(R.id.tvLikeCountAdapter);
@@ -97,11 +98,14 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
+            tvName.setText(tweet.user.name);
             Glide.with(context).load(tweet.user.profileImageUrl).transform(new RoundedCornersTransformation(40, 15)).into(ivProfileImage);
 
             if(!tweet.imageUrl.equals("")){
                 ivTweetPhoto.setVisibility(View.VISIBLE);
                 Glide.with(context).load(tweet.imageUrl).transform(new RoundedCornersTransformation(30, 10)).into(ivTweetPhoto);
+            }else{
+                ivTweetPhoto.setVisibility(View.GONE);
             }
             tvTimeStamp.setText(ParseRelativeDate.getRelativeTimeAgo(tweet.createdAt));
 
@@ -116,6 +120,15 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     Log.i("TweetsAdapter", tweet.body);
                     Intent i = new Intent(context, DetailsActivity.class);
                     i.putExtra("tweet", Parcels.wrap(tweet));
+                    context.startActivity(i);
+                }
+            });
+
+            ivProfileImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(context, ProfileActivity.class);
+                    i.putExtra("tweetProfile", Parcels.wrap(tweet));
                     context.startActivity(i);
                 }
             });

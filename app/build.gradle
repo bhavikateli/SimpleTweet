@@ -5,6 +5,7 @@ def apikeyProperties = new Properties()
 apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 
 android {
+
     compileSdkVersion 28
 
     defaultConfig {
@@ -33,6 +34,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 }
 

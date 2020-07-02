@@ -39,6 +39,7 @@ public class DetailsActivity extends AppCompatActivity {
     EditText etReply;
     Button btnPublishReply;
     ImageView ivTweetPhotoDetails;
+    TextView tvName;
 
 
     Boolean like;
@@ -64,6 +65,7 @@ public class DetailsActivity extends AppCompatActivity {
         tvRetweetCount = findViewById(R.id.tvRetweetCount);
         etReply = findViewById(R.id.etReply);
         ivTweetPhotoDetails = findViewById(R.id.ivTweetPhotoDetails);
+        tvName = findViewById(R.id.tvName);
 
         Glide.with(this).load(tweet.user.profileImageUrl).transform(new RoundedCornersTransformation(40, 20)).into(ivProfileImage);
         if(!tweet.imageUrl.equals("")){
@@ -72,6 +74,7 @@ public class DetailsActivity extends AppCompatActivity {
         }
         tvBody.setText(tweet.body);
         tvScreenName.setText(tweet.user.screenName);
+        tvName.setText(tweet.user.name);
         tvTimeStamp.setText(ParseRelativeDate.getRelativeTimeAgo(tweet.createdAt));
         tvLikeCount.setText(String.valueOf(tweet.likeCount));
         tvRetweetCount.setText(String.valueOf(tweet.retweetCount));
@@ -125,7 +128,7 @@ public class DetailsActivity extends AppCompatActivity {
         client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
-                Log.i("DetailsActivity", "onSUccess to publish the reply");
+                Log.i("DetailsActivity", "onSuccess to publish the reply");
                 try {
                     Tweet tweet = Tweet.fromJson(json.jsonObject);
                     Log.i("DetailsActivity", "published reply says: " + tweet.body);
@@ -155,16 +158,16 @@ public class DetailsActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(int statusCode, Headers headers, JSON json) {
                     if (retweet == true) {
-                        ivRetweet.setImageDrawable(getResources().getDrawable(R.drawable.ic_vector_retweet));
-                    } else {
                         ivRetweet.setImageDrawable(getResources().getDrawable(R.drawable.ic_vector_retweet_stroke));
+                    } else {
+                        ivRetweet.setImageDrawable(getResources().getDrawable(R.drawable.ic_vector_retweet));
                     }
                     retweet = !retweet;
                 }
 
                 @Override
                 public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                    Log.e("DetailsActivity", "this retweet aint working", throwable);
+                    Log.e("DetailsActivity", " retweet is not working", throwable);
                 }
             });
         }
@@ -177,17 +180,15 @@ public class DetailsActivity extends AppCompatActivity {
                 public void onSuccess(int statusCode, Headers headers, JSON json) {
                     if (like == true) {
                         ivLike.setImageDrawable(getResources().getDrawable(R.drawable.ic_vector_heart_stroke));
-                        Toast.makeText(getBaseContext(), "liked", Toast.LENGTH_SHORT).show();
                     } else {
                         ivLike.setImageDrawable(getResources().getDrawable(R.drawable.ic_vector_heart));
-                        Toast.makeText(getBaseContext(), "unliked", Toast.LENGTH_SHORT).show();
                     }
                     like = !like;
                 }
 
                 @Override
                 public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                    Log.e("DetailsActivity", "this like aint working", throwable);
+                    Log.e("DetailsActivity", " like is not working", throwable);
 
                 }
             });
