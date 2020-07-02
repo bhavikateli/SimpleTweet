@@ -71,6 +71,10 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvBody;
         TextView tvScreenName;
         TextView tvTimeStamp;
+        TextView tvRetweetCount;
+        TextView tvLikeCount;
+        ImageView ivTweetPhoto;
+
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -79,7 +83,11 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
+            ivTweetPhoto = itemView.findViewById(R.id.ivTweetPhoto);
 
+
+            tvLikeCount = itemView.findViewById(R.id.tvLikeCountAdapter);
+            tvRetweetCount = itemView.findViewById(R.id.tvRetweetCountAdapter);
 
         }
 
@@ -88,7 +96,17 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+
+            if(!tweet.imageUrl.equals("")){
+                ivTweetPhoto.setVisibility(View.VISIBLE);
+                Glide.with(context).load(tweet.imageUrl).into(ivTweetPhoto);
+            }
             tvTimeStamp.setText(ParseRelativeDate.getRelativeTimeAgo(tweet.createdAt));
+
+            tvLikeCount.setText(String.valueOf(tweet.likeCount));
+           tvRetweetCount.setText(String.valueOf(tweet.retweetCount));
+
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

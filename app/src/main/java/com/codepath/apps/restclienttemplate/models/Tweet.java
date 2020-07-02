@@ -19,6 +19,7 @@ public class Tweet {
     public int likeCount;
     public int retweetCount;
     public Long id;
+    public String imageUrl;
 
 
     //empty constructor fr parceler
@@ -35,6 +36,13 @@ public class Tweet {
         tweet.likeCount = jsonObject.getInt("favorite_count");
         tweet.retweetCount = jsonObject.getInt("retweet_count");
         tweet.id = jsonObject.getLong("id");
+        try{
+        tweet.imageUrl = jsonObject.getJSONObject("entities").getJSONArray("media").getJSONObject(0).getString("media_url_https");
+        }
+        catch (JSONException e) {
+            tweet.imageUrl = "";
+        }
+
 
         return tweet;
     }
