@@ -6,16 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".TimelineActivity">
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        app:menu="@menu/menu_main"
-        android:background="#000000"
-        />
+        android:layout_alignParentEnd="true"
+        android:background="#1DA1F2"
+        app:menu="@menu/menu_main" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
@@ -33,5 +33,17 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="72dp"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="169dp"
+        android:layout_marginTop="0dp"
+        app:srcCompat="@drawable/twitter_logo_whiteonblue" />
+
 </RelativeLayout>
 

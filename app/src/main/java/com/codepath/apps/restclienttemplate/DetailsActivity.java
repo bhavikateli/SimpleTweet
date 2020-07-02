@@ -20,6 +20,7 @@ import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import org.json.JSONException;
 import org.parceler.Parcels;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 import okhttp3.Headers;
 
 public class DetailsActivity extends AppCompatActivity {
@@ -37,6 +38,8 @@ public class DetailsActivity extends AppCompatActivity {
     TextView tvRetweetCount;
     EditText etReply;
     Button btnPublishReply;
+    ImageView ivTweetPhotoDetails;
+
 
     Boolean like;
     Boolean retweet;
@@ -60,8 +63,13 @@ public class DetailsActivity extends AppCompatActivity {
         tvLikeCount = findViewById(R.id.tvLikeCount);
         tvRetweetCount = findViewById(R.id.tvRetweetCount);
         etReply = findViewById(R.id.etReply);
+        ivTweetPhotoDetails = findViewById(R.id.ivTweetPhotoDetails);
 
-        Glide.with(this).load(tweet.user.profileImageUrl).into(ivProfileImage);
+        Glide.with(this).load(tweet.user.profileImageUrl).transform(new RoundedCornersTransformation(40, 20)).into(ivProfileImage);
+        if(!tweet.imageUrl.equals("")){
+            ivTweetPhotoDetails.setVisibility(View.VISIBLE);
+            Glide.with(this).load(tweet.imageUrl).transform(new RoundedCornersTransformation(30, 10)).into(ivTweetPhotoDetails);
+        }
         tvBody.setText(tweet.body);
         tvScreenName.setText(tweet.user.screenName);
         tvTimeStamp.setText(ParseRelativeDate.getRelativeTimeAgo(tweet.createdAt));
