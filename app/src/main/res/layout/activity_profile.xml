@@ -96,7 +96,7 @@
         android:layout_marginStart="51dp"
         android:layout_marginTop="15dp"
         android:fontFamily="sans-serif-black"
-        android:text="Following"
+        android:text="Followers"
         android:textColor="#1DA1F2"
         android:textStyle="bold" />
 
@@ -109,7 +109,7 @@
         android:layout_marginTop="18dp"
         android:layout_toEndOf="@+id/tvFollower"
         android:fontFamily="sans-serif-black"
-        android:text="Followers"
+        android:text="Following"
         android:textColor="#1DA1F2"
         android:textStyle="bold" />
 
