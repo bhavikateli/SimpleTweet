@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Parcel
-@Entity(foreignKeys = @ForeignKey(entity=User.class, parentColumns="id", childColumns="userId"))
+@Entity(foreignKeys = @ForeignKey(entity = User.class, parentColumns = "id", childColumns = "userId"))
 public class Tweet {
 
     @ColumnInfo
@@ -44,7 +44,7 @@ public class Tweet {
     public String imageUrl;
 
     @ColumnInfo
-     public long userId;
+    public long userId;
 
     @Ignore
     public User user;
@@ -67,10 +67,9 @@ public class Tweet {
         User user = User.fromJson(jsonObject.getJSONObject("user"));
         tweet.user = user;
         tweet.userId = user.id;
-        try{
-        tweet.imageUrl = jsonObject.getJSONObject("entities").getJSONArray("media").getJSONObject(0).getString("media_url_https");
-        }
-        catch (JSONException e) {
+        try {
+            tweet.imageUrl = jsonObject.getJSONObject("entities").getJSONArray("media").getJSONObject(0).getString("media_url_https");
+        } catch (JSONException e) {
             tweet.imageUrl = "";
         }
 

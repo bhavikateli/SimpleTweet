@@ -101,17 +101,16 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvName.setText(tweet.user.name);
             Glide.with(context).load(tweet.user.profileImageUrl).transform(new RoundedCornersTransformation(40, 15)).into(ivProfileImage);
 
-            if(!tweet.imageUrl.equals("")){
+            if (!tweet.imageUrl.equals("")) {
                 ivTweetPhoto.setVisibility(View.VISIBLE);
                 Glide.with(context).load(tweet.imageUrl).transform(new RoundedCornersTransformation(30, 10)).into(ivTweetPhoto);
-            }else{
+            } else {
                 ivTweetPhoto.setVisibility(View.GONE);
             }
             tvTimeStamp.setText(ParseRelativeDate.getRelativeTimeAgo(tweet.createdAt));
 
             tvLikeCount.setText(String.valueOf(tweet.likeCount));
-           tvRetweetCount.setText(String.valueOf(tweet.retweetCount));
-
+            tvRetweetCount.setText(String.valueOf(tweet.retweetCount));
 
 
             itemView.setOnClickListener(new View.OnClickListener() {

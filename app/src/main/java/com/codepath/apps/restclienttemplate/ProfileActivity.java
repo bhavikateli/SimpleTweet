@@ -69,7 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                for(int i = 0; i < jsonArray.length();i++ ){
+                for (int i = 0; i < jsonArray.length(); i++) {
                     try {
                         followers.add(User.fromJson(jsonArray.getJSONObject(i)));
                         followersAdapter.notifyDataSetChanged();
@@ -85,7 +85,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-       client.getFollowingList(tweet.user.id, new JsonHttpResponseHandler() {
+        client.getFollowingList(tweet.user.id, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 JSONArray jsonArray = null;
@@ -94,7 +94,7 @@ public class ProfileActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                for(int i = 0; i < jsonArray.length(); i++ ){
+                for (int i = 0; i < jsonArray.length(); i++) {
                     try {
                         following.add(User.fromJson(jsonArray.getJSONObject(i)));
                         followingAdapter.notifyDataSetChanged();
@@ -103,6 +103,7 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
 
@@ -128,7 +129,6 @@ public class ProfileActivity extends AppCompatActivity {
         tvName.setText(tweet.user.name);
 
     }
-
 
 
 }

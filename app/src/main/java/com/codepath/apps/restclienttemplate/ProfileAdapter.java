@@ -47,7 +47,6 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         TextView tvFollowers;
 
 
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvFollowers = itemView.findViewById(R.id.tvFollowers);

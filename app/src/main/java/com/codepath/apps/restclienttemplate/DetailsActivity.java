@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.codepath.apps.restclienttemplate.databinding.ActivityDetailsBinding;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
@@ -26,22 +27,7 @@ import okhttp3.Headers;
 public class DetailsActivity extends AppCompatActivity {
 
     public static final int MAX_TWEET_LENGTH = 280;
-
-    ImageView ivProfileImage;
-    TextView tvScreenName;
-    TextView tvBody;
-    TextView tvTimeStamp;
-    ImageView ivRetweet;
-    ImageView ivLike;
-    ImageView ivReply;
-    TextView tvLikeCount;
-    TextView tvRetweetCount;
-    EditText etReply;
-    Button btnPublishReply;
-    ImageView ivTweetPhotoDetails;
-    TextView tvName;
-
-
+    
     Boolean like;
     Boolean retweet;
 
@@ -50,39 +36,32 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+        final ActivityDetailsBinding binding = ActivityDetailsBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
         setTweetDetails();
     }
 
     void setTweetDetails() {
         tweet = Parcels.unwrap(getIntent().getParcelableExtra("tweet"));
 
-        ivProfileImage = findViewById(R.id.ivProfileImage);
-        tvScreenName = findViewById(R.id.tvScreenName);
-        tvBody = findViewById(R.id.tvBody);
-        tvTimeStamp = findViewById(R.id.tvTimeStamp);
-        tvLikeCount = findViewById(R.id.tvLikeCount);
-        tvRetweetCount = findViewById(R.id.tvRetweetCount);
-        etReply = findViewById(R.id.etReply);
-        ivTweetPhotoDetails = findViewById(R.id.ivTweetPhotoDetails);
-        tvName = findViewById(R.id.tvName);
 
         Glide.with(this).load(tweet.user.profileImageUrl).transform(new RoundedCornersTransformation(40, 20)).into(ivProfileImage);
-        if(!tweet.imageUrl.equals("")){
+        if (!tweet.imageUrl.equals("")) {
             ivTweetPhotoDetails.setVisibility(View.VISIBLE);
             Glide.with(this).load(tweet.imageUrl).transform(new RoundedCornersTransformation(30, 10)).into(ivTweetPhotoDetails);
         }
-        tvBody.setText(tweet.body);
-        tvScreenName.setText(tweet.user.screenName);
-        tvName.setText(tweet.user.name);
-        tvTimeStamp.setText(ParseRelativeDate.getRelativeTimeAgo(tweet.createdAt));
-        tvLikeCount.setText(String.valueOf(tweet.likeCount));
-        tvRetweetCount.setText(String.valueOf(tweet.retweetCount));
-        btnPublishReply = findViewById(R.id.btnPublishReply);
+        binding.tvBody.setText(tweet.body);
+        binding.tvScreenName.setText(tweet.user.screenName);
+        binding.tvName.setText(tweet.user.name);
+        binding.tvTimeStamp.setText(ParseRelativeDate.getRelativeTimeAgo(tweet.createdAt));
+        binding.tvLikeCount.setText(String.valueOf(tweet.likeCount));
+        binding.tvRetweetCount.setText(String.valueOf(tweet.retweetCount));
+        binding.btnPublishReply = findViewById(R.id.btnPublishReply);
 
 
-        like = tweet.like;
-        retweet = tweet.retweet;
+        binding.like = tweet.like;
+        binding.retweet = tweet.retweet;
 
         // setting listeners
         ivRetweet = findViewById(R.id.ivRetweet);
@@ -153,48 +132,48 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void retweetTweet() {
-            TwitterClient client = TwitterApp.getRestClient(this);
-            client.retweetTweet(retweet, tweet.id, new JsonHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Headers headers, JSON json) {
-                    if (retweet == true) {
-                        ivRetweet.setImageDrawable(getResources().getDrawable(R.drawable.ic_vector_retweet_stroke));
-                    } else {
-                        ivRetweet.setImageDrawable(getResources().getDrawable(R.drawable.ic_vector_retweet));
-                    }
-                    retweet = !retweet;
+        TwitterClient client = TwitterApp.getRestClient(this);
+        client.retweetTweet(retweet, tweet.id, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                if (retweet == true) {
+                    ivRetweet.setImageDrawable(getResources().getDrawable(R.drawable.ic_vector_retweet_stroke));
+                } else {
+                    ivRetweet.setImageDrawable(getResources().getDrawable(R.drawable.ic_vector_retweet));
                 }
+                retweet = !retweet;
+            }
 
-                @Override
-                public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                    Log.e("DetailsActivity", " retweet is not working", throwable);
-                }
-            });
-        }
-
-
-        public void likeTweet() {
-            TwitterClient client = TwitterApp.getRestClient(this);
-            client.likeTweet(like, tweet.id, new JsonHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Headers headers, JSON json) {
-                    if (like == true) {
-                        ivLike.setImageDrawable(getResources().getDrawable(R.drawable.ic_vector_heart_stroke));
-                    } else {
-                        ivLike.setImageDrawable(getResources().getDrawable(R.drawable.ic_vector_heart));
-                    }
-                    like = !like;
-                }
-
-                @Override
-                public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                    Log.e("DetailsActivity", " like is not working", throwable);
-
-                }
-            });
-        }
-
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Log.e("DetailsActivity", " retweet is not working", throwable);
+            }
+        });
     }
+
+
+    public void likeTweet() {
+        TwitterClient client = TwitterApp.getRestClient(this);
+        client.likeTweet(like, tweet.id, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                if (like == true) {
+                    ivLike.setImageDrawable(getResources().getDrawable(R.drawable.ic_vector_heart_stroke));
+                } else {
+                    ivLike.setImageDrawable(getResources().getDrawable(R.drawable.ic_vector_heart));
+                }
+                like = !like;
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Log.e("DetailsActivity", " like is not working", throwable);
+
+            }
+        });
+    }
+
+}
 
 
 
