@@ -37,7 +37,10 @@
         android:layout_marginTop="17dp"
         android:layout_marginEnd="0dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        tools:text="yo this is my first tweet :))) yolo. iam going to continue to keep typing because i dont get why this tweet got cut off, it doesnt make any sense? send help to world and peace to us allyo this is my first tweet :))) yolo. iam going to continue to keep typing because i dont get why this tweet got cut off, it doesnt make any sense? send help to world and peace to us allyo this is my first tweet :))) yolo. iam going to continue to keep typing because i dont get why this tweet got cut off, it doesnt make any sense? send help to world and peace to us all" />
+        tools:text="yo this is my first tweet :))) yolo. iam going to continue to keep typing because i dont get why this tweet got cut off, it doesnt make any sense? send help to world and peace to us allyo this is my first tweet :))) yolo. iam going to continue to keep typing because i dont get why this tweet got cut off, it doesnt make any sense? send help to world and peace to us allyo this is my first tweet :))) yolo. iam going to continue to keep typing because i dont get why this tweet got cut off, it doesnt make any sense? send help to world and peace to us all"
+        android:autoLink="all"
+        android:linksClickable="true"
+        />
 
     <View
         android:id="@+id/view"

@@ -124,6 +124,8 @@ public class ProfileActivity extends AppCompatActivity {
                 .load(tweet.user.profileImageUrl)
                 .transform(new RoundedCornersTransformation(40, 20))
                 .into(ivProfileImage);
+        tvScreenName.setText(tweet.user.screenName);
+        tvName.setText(tweet.user.name);
 
     }
 
